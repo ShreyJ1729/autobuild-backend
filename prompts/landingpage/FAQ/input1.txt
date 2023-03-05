@@ -1,0 +1,1 @@
+Build me the FAQ component for the website for Netflix which is a subscription-based streaming service that offers a wide range of TV shows, movies, and documentaries, offering unlimited streaming and the ability to download content for offline viewing.

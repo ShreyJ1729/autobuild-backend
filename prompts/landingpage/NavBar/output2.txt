@@ -1,0 +1,68 @@
+import React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
+
+const NavBar = () => {
+    return (
+        <>
+            <AppBar
+                sx={{
+                    backgroundColor: 'transparent',
+                    padding: '25px 20px',
+                    position: 'absolute'
+                }}
+                elevation={0}
+            >
+                <Toolbar>
+                    <Grid container alignItems="center" spacing={2}>
+                        <Grid item xs>
+                            <img
+                                src="/__images/netflix.svg"
+                                style={{
+                                    height: '45px',
+                                    width: '167px',
+                                    display: 'block',
+                                }}
+                                alt="Netflix logo"
+                            />
+                        </Grid>
+                        <Grid item xs="auto">
+                            <Select
+                                name="lang"
+                                variant="outlined"
+                                size="small"
+                                defaultValue="EN"
+                                sx={{
+                                    borderWidth: '2px',
+                                    borderStyle: 'solid',
+                                    borderColor: 'common.white',
+                                    color: 'common.white',
+                                    '& .MuiSelect-icon': {
+                                        color: 'common.white'
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                        border: 'none'
+                                    }
+                                }}
+                            >
+                                <MenuItem value="ID">Bahasa Indonesia</MenuItem>
+                                <MenuItem value="EN">English</MenuItem>
+                            </Select>
+                        </Grid>
+                        <Grid item xs="auto">
+                            <Button color="primary" variant="contained">
+                                Sign in
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Toolbar>
+            </AppBar>
+        </>
+    )
+}
+
+export default NavBar

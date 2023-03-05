@@ -1,0 +1,1 @@
+Build me the Details component for the website for Surfa Club which is a community of college students that offers a pay-it-forward system for couchsurfing, with access to events, resources, and networking opportunities.

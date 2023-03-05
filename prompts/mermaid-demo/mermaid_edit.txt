@@ -1,0 +1,174 @@
+<<|QUERY|>>
+Remove everything related to sockets
+<<|MERMAID|>>
+graph TD;
+
+%% UI components
+App["App.js"]
+ChatWindow["ChatWindow.js"]
+ChatHeader["ChatHeader.js"]
+ChatBody["ChatBody.js"]
+ChatInput["ChatInput.js"]
+ChatMessage["ChatMessage.js"]
+
+%% UI component connections
+App --> |renders|ChatWindow
+ChatWindow --> |renders|ChatHeader
+ChatWindow --> |renders|ChatBody
+ChatWindow --> |renders|ChatInput
+ChatBody --> |iteratively renders|ChatMessage
+
+%% UI component props
+ChatHeaderProps["roomName:string"]
+ChatMessageProps["author:string,\ntext:string,\ntimestamp:string"]
+
+%% UI component function definitions
+ChatInput-sendMessage["sendMessage"]
+
+%% UI component function connections
+ChatInput --> |calls|ChatInput-sendMessage
+
+%% utils/socket.io
+utils/socket.io[utils/socket.io.js]
+socket["socket.io-client"]
+utils/socket.io -.-> |socket|socket
+
+%% utils/recoil
+utils/recoil[utils/recoil.js]
+messagesAtom["[{id:string,\nauthor:string,\ntext:string,\ntimestamp:string},...]"]
+utils/recoil -.-> |messagesAtom|messagesAtom
+
+%% recoil function connections
+ChatInput-sendMessage --> |sends through socket|utils/socket.io
+utils/socket.io --> |updates messages|messagesAtom
+ChatBody --> |reads|messagesAtom
+
+%% UI component props connections
+ChatHeader -.-> |props|ChatHeaderProps
+ChatMessage -.-> |props|ChatMessageProps
+<<|OUTPUT|>>
+graph TD;
+
+%% UI components
+App["App.js"]
+ChatWindow["ChatWindow.js"]
+ChatHeader["ChatHeader.js"]
+ChatBody["ChatBody.js"]
+ChatInput["ChatInput.js"]
+ChatMessage["ChatMessage.js"]
+
+%% UI component connections
+App --> |renders|ChatWindow
+ChatWindow --> |renders|ChatHeader
+ChatWindow --> |renders|ChatBody
+ChatWindow --> |renders|ChatInput
+ChatBody --> |iteratively renders|ChatMessage
+
+%% UI component props
+ChatHeaderProps["roomName:string"]
+ChatMessageProps["author:string,\ntext:string,\ntimestamp:string"]
+
+%% UI component function definitions
+ChatInput-sendMessage["sendMessage"]
+
+%% UI component function connections
+ChatInput --> |calls|ChatInput-sendMessage
+
+%% utils/recoil
+utils/recoil[utils/recoil.js]
+messagesAtom["[{id:string,\nauthor:string,\ntext:string,\ntimestamp:string},...]"]
+utils/recoil -.-> |messagesAtom|messagesAtom
+
+%% recoil function connections
+ChatInput-sendMessage --> |updates messages|messagesAtom
+ChatBody --> |reads|messagesAtom
+
+%% UI component props connections
+ChatHeader -.-> |props|ChatHeaderProps
+ChatMessage -.-> |props|ChatMessageProps
+<<|END|>>
+<<|QUERY|>>
+remove delete functionality
+<<|MERMAID|>>
+graph TD;
+
+%% UI components
+App["App.js"]
+NoteList["NoteList.js"]
+NoteItem["NoteItem.js"]
+NoteForm["NoteForm.js"]
+
+%% UI component connections
+App --> |renders|NoteList
+NoteList --> |iteratively renders|NoteItem
+NoteList --> |renders|NoteForm
+
+%% UI component props
+NoteItemProps["title:string,\ncontent:string,\ntimestamp:string"]
+NoteFormProps["addNote:function,\ndeleteAllNotes:function"]
+
+%% UI component function definitions
+NoteForm-addNote["addNote"]
+NoteForm-deleteAllNotes["deleteAllNotes"]
+
+%% UI component function connections
+NoteForm --> |calls|NoteForm-addNote
+NoteForm --> |calls|NoteForm-deleteAllNotes
+NoteItem --> |calls deleteNote|NoteForm-deleteAllNotes
+
+%% utils/recoil
+utils/recoil[utils/recoil.js]
+notesAtom["[{id:string,\ntitle:string,\ncontent:string,\ntimestamp:string},...]"]
+utils/recoil -.-> |notesAtom|notesAtom
+
+%% recoil function connections
+NoteForm-addNote --> |updates notes|notesAtom
+NoteForm-deleteAllNotes --> |updates notes|notesAtom
+NoteList --> |reads|notesAtom
+NoteItem --> |sends ID to deleteNote|NoteForm-deleteAllNotes
+
+%% UI component props connections
+NoteItem -.-> |props|NoteItemProps
+NoteForm -.-> |props|NoteFormProps
+<<|OUTPUT|>>
+graph TD;
+
+%% UI components
+App["App.js"]
+NoteList["NoteList.js"]
+NoteItem["NoteItem.js"]
+NoteForm["NoteForm.js"]
+
+%% UI component connections
+App --> |renders|NoteList
+NoteList --> |iteratively renders|NoteItem
+NoteList --> |renders|NoteForm
+
+%% UI component props
+NoteItemProps["title:string,\ncontent:string,\ntimestamp:string"]
+NoteFormProps["addNote:function"]
+
+%% UI component function definitions
+NoteForm-addNote["addNote"]
+
+%% UI component function connections
+NoteForm --> |calls|NoteForm-addNote
+
+%% utils/recoil
+utils/recoil[utils/recoil.js]
+notesAtom["[{id:string,\ntitle:string,\ncontent:string,\ntimestamp:string},...]"]
+utils/recoil -.-> |notesAtom|notesAtom
+
+%% recoil function connections
+NoteForm-addNote --> |updates notes|notesAtom
+NoteList --> |reads|notesAtom
+
+%% UI component props connections
+NoteItem -.-> |props|NoteItemProps
+NoteForm -.-> |props|NoteFormProps
+<<|END|>>
+<<|QUERY|>>
+{{QUERY}}
+<<|MERMAID|>>
+{{MERMAID}}
+<<|OUTPUT|>>

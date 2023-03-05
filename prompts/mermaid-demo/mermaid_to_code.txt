@@ -1,0 +1,93 @@
+<<|DESCRIPTION|>>
+A Typescript React app that allows users to create and delete notes.
+<<|MERMAID||>>
+graph TD;App.tsx-->|renders|Header.tsx;App.tsx-->|renders|NoteList.tsx;App.tsx-->|renders|NoteForm.tsx;NoteList.tsx-->|renders|Note.tsx;Note.tsx-->|iteratively renders|DeleteNoteButton.tsx;NoteForm.tsx-->|renders|NoteInput.tsx;NoteInput.tsx-->|renders|NoteTitleInput.tsx;NoteInput.tsx-->|renders|NoteMessageInput.tsx;NoteForm.tsx-->|renders|NoteSubmitButton.tsx;App.tsx-->|useState|noteListState["noteListState:[{title:str,<br/>message:str,<br/>id:int}]"];NoteForm.tsx-->|useState|formState["formState:{title:str,<br/>message:str}"];NoteSubmitButton.tsx-->|calls|submit_note["submit_note(title:str,<br/>message:str,<br/>id:int)=>bool"];DeleteNoteButton.tsx-->|calls|delete_note["delete_note(id:int)=>bool"];NoteList.tsx-->|props|noteListProps["noteListState<br/>setNoteListState"];Note.tsx-->|props|noteProps["title:str<br/>message:str<br/>id:int<br/>setNoteListState"];NoteForm.tsx-->|props|noteFormProps["setNoteListState"];NoteInput.tsx-->|props|noteInputProps["formState<br/>setFormState"];NoteTitleInput.tsx-->|props|noteTitleInputProps["title:str<br/>setFormState"];NoteMessageInput.tsx-->|props|noteMessageInputProps["message:str<br/>setFormState"];DeleteNoteButton.tsx-->|props|deleteNoteButtonProps["id:int<br/>setNoteListState"];NoteSubmitButton.tsx-->|props|setNoteListState["setNoteListState"];
+<<|FILENAME|>>
+NoteInput.tsx
+<<|OUTPUT|>>
+import React from "react";
+import PropTypes from "prop-types";
+import NoteTitleInput from "./NoteTitleInput";
+import NoteMessageInput from "./NoteMessageInput";
+
+type NoteInputProps = {
+  formState: { title: string, message: string },
+  setFormState: React.Dispatch<React.SetStateAction<{ title: string, message: string }>>
+};
+
+const NoteInput: React.FC<NoteInputProps> = ({ formState, setFormState }) => {
+  return (
+    <div className="flex flex-col space-y-2">
+      <NoteTitleInput title={formState.title} setFormState={setFormState} />
+      <NoteMessageInput message={formState.message} setFormState={setFormState} />
+    </div>
+  );
+};
+
+NoteInput.propTypes = {
+  formState: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired
+  }).isRequired,
+  setFormState: PropTypes.func.isRequired
+};
+
+export default NoteInput;
+<<|END|>>
+<<|DESCRIPTION|>>
+A Typescript React app that allows users to create and delete notes.
+<<|MERMAID||>>
+graph TD;App.tsx-->|renders|Header.tsx;App.tsx-->|renders|NoteList.tsx;App.tsx-->|renders|NoteForm.tsx;NoteList.tsx-->|renders|Note.tsx;Note.tsx-->|iteratively renders|DeleteNoteButton.tsx;NoteForm.tsx-->|renders|NoteInput.tsx;NoteInput.tsx-->|renders|NoteTitleInput.tsx;NoteInput.tsx-->|renders|NoteMessageInput.tsx;NoteForm.tsx-->|renders|NoteSubmitButton.tsx;App.tsx-->|useState|noteListState["noteListState:[{title:str,<br/>message:str,<br/>id:int}]"];NoteForm.tsx-->|useState|formState["formState:{title:str,<br/>message:str}"];NoteSubmitButton.tsx-->|calls|submit_note["submit_note(title:str,<br/>message:str,<br/>id:int)=>bool"];DeleteNoteButton.tsx-->|calls|delete_note["delete_note(id:int)=>bool"];NoteList.tsx-->|props|noteListProps["noteListState<br/>setNoteListState"];Note.tsx-->|props|noteProps["title:str<br/>message:str<br/>id:int<br/>setNoteListState"];NoteForm.tsx-->|props|noteFormProps["setNoteListState"];NoteInput.tsx-->|props|noteInputProps["formState<br/>setFormState"];NoteTitleInput.tsx-->|props|noteTitleInputProps["title:str<br/>setFormState"];NoteMessageInput.tsx-->|props|noteMessageInputProps["message:str<br/>setFormState"];DeleteNoteButton.tsx-->|props|deleteNoteButtonProps["id:int<br/>setNoteListState"];NoteSubmitButton.tsx-->|props|setNoteListState["setNoteListState"];
+<<|FILENAME|>>
+App.tsx
+<<|OUTPUT|>>
+import React, { useState } from 'react';
+import Header from './Header';
+import NoteList from './NoteList';
+import NoteForm from './NoteForm';
+
+type Note = {
+  title: string;
+  message: string;
+  id: number;
+};
+
+type FormState = {
+  title: string;
+  message: string;
+};
+
+const App = (): JSX.Element => {
+  const [noteListState, setNoteListState] = useState<Note[]>([]);
+  const [formState, setFormState] = useState<FormState>({ title: '', message: '' });
+
+  const submitNote = (title: string, message: string, id: number): boolean => {
+    const newNote = { title, message, id };
+    setNoteListState([...noteListState, newNote]);
+    setFormState({ title: '', message: '' });
+    return true;
+  };
+
+  const deleteNote = (id: number): boolean => {
+    setNoteListState(noteListState.filter((note) => note.id !== id));
+    return true;
+  };
+
+  return (
+    <div className="h-screen flex flex-col">
+      <Header />
+      <NoteList noteListState={noteListState} setNoteListState={setNoteListState} />
+      <NoteForm formState={formState} setFormState={setFormState} submitNote={submitNote} />
+    </div>
+  );
+};
+
+export default App;
+<<|END|>>
+<<|DESCRIPTION|>>
+{{DESCRIPTION}}
+<<|MERMAID||>>
+{{MERMAID}}
+<<|FILENAME|>>
+{{FILENAME}}
+<<|OUTPUT|>>

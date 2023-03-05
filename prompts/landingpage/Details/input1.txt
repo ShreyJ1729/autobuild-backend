@@ -1,0 +1,1 @@
+Build me the Details component for the website for HB Sales which is a site to help people buy, sell, rent, and build houses.
