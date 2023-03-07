@@ -1,0 +1,1 @@
+Simple Navbar section with an action button and user dropdown

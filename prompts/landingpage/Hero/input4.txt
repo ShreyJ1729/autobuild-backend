@@ -1,0 +1,1 @@
+Compact Hero section with a title, subtitle, graphics, and a Create Project button, all with a blue color scheme.

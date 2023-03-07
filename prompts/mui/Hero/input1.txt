@@ -1,0 +1,1 @@
+Build me the Hero component for the website for CourseSpace which is a course platform that offers various online courses on web development, programming, design, and business.

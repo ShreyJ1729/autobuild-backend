@@ -1,16 +1,24 @@
 import os
 from fastapi import FastAPI, Response
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import modal
 import openai
 import dotenv
 
 app = FastAPI()
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 image = modal.Image.debian_slim().pip_install_from_requirements("requirements.txt")
 
 stub = modal.Stub("autobuild", image=image)
-app = FastAPI()
 
 
 def load_openai_key():
@@ -57,7 +65,7 @@ async def mermaid_gen(data: MermaidGenRequest, response: Response):
         variables={
             "DESCRIPTION": data.description,
         },
-        prompt_path="/root/prompts/mermaid-demo/mermaid_gen.txt",
+        prompt_path="./prompts/mermaid-demo/mermaid_gen.txt",
         prompt_instructions="You are a helpful markdown generation bot for mermaid diagrams that architects mermaid diagrams for React web apps in markdown from a text description. Stop token: <<|END|>>",
     )
 
@@ -87,7 +95,7 @@ async def mermaid_edit(data: MermaidEditRequest):
             "MERMAID": data.mermaid,
             "QUERY": data.query,
         },
-        prompt_path="/root/prompts/mermaid-demo/mermaid_edit.txt",
+        prompt_path="./prompts/mermaid-demo/mermaid_edit.txt",
         prompt_instructions="You are a helpful markdown generation bot for mermaid diagrams that takes in a markdown mermaid diagram and a query and returns a new mermaid diagram with edits. Stop token: <<|END|>>",
     )
 
@@ -109,7 +117,7 @@ def component_list_gen(mermaid: str):
         variables={
             "MERMAID": mermaid,
         },
-        prompt_path="/root/prompts/mermaid-demo/component_list_gen.txt",
+        prompt_path="./prompts/mermaid-demo/component_list_gen.txt",
         prompt_instructions="You are a helpful markdown parsing bot that takes in a markdown mermaid diagram and returns a list of components in a bottom-up traversal. Stop token: <<|END|>>",
     )
 
@@ -167,7 +175,7 @@ async def mermaid_to_code(data: MermaidToCodeRequest):
                 "MERMAID": data.mermaid,
                 "FILENAME": component,
             },
-            prompt_path="/root/prompts/mermaid-demo/mermaid_to_code.txt",
+            prompt_path="./prompts/mermaid-demo/mermaid_to_code.txt",
             prompt_instructions="You are a helpful Typescript React code generation bot that takes in a Typescript React App description, a filename and markdown mermaid diagram architecting the React app and you return the code for that file and ONLY that file. You do not import from any file or module that is not specified in the user-provided mermaid diagram. You import children component of a file that are shown in the markdown mermaid diagram. You always define a component's prop types in the same file as the component using the PropTypes module. You use tailwind css and create stunning, modern and sleek UI designs. Stop token: <<|END|>>",
         )
 
@@ -190,7 +198,10 @@ async def mermaid_to_code(data: MermaidToCodeRequest):
 
 
 @stub.asgi(
-    mounts=[modal.Mount.from_local_dir("./prompts", remote_path="/root/prompts")]
+    mounts=[
+        modal.Mount.from_local_dir("./prompts", remote_path="/root/prompts"),
+        modal.Mount.from_local_file("./.env", remote_path="/root/.env"),
+    ]
 )
 def fastapi_app():
     return app

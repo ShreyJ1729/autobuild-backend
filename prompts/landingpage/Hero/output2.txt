@@ -1,80 +1,57 @@
-import React, { useState } from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import {
-  createTheme,
-  IconButton,
-  Paper,
-  Switch,
-  ThemeProvider,
-} from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { Box } from "@mui/system";
+  Flex,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  Button,
+  Icon,
+  IconProps,
+} from '@chakra-ui/react';
 
-const HeroCard = () => {
-  const [darkMood, setDarkMood] = useState(false);
-  const lightTheme = createTheme({
-    palette: {
-      mode: "light",
-    },
-  });
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#FF0000",
-      },
-    },
-  });
-  console.log(darkMood);
+export default function CallToActionWithIllustration() {
   return (
-    <ThemeProvider theme={darkMood ? darkTheme : lightTheme}>
-      <Switch onClick={() => setDarkMood(!darkMood)}></Switch>
-      <Box
-        sx={{
-          p: 0,
-          height: "100vh",
-          width: "100vh",
-          alignItems: "center",
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <Card sx={{ maxWidth: 345, p: 2, border: 2, boxShadow: 24 }}>
-          <CardMedia
-            sx={{ borderRadius: 1, height: 1 }}
-            component="img"
-            height="140"
-            image={“https://picsum.photos/1600/1200”}
-            alt="green iguana"
+    <Container maxW={'5xl'}>
+      <Stack
+        textAlign={'center'}
+        align={'center'}
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 20, md: 28 }}>
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          lineHeight={'110%'}>
+          Meeting scheduling{' '}
+          <Text as={'span'} color={'orange.400'}>
+            made easy
+          </Text>
+        </Heading>
+        <Text color={'gray.500'} maxW={'3xl'}>
+          Never miss a meeting. Never be late for one too. Keep track of your
+          meetings and receive smart reminders in appropriate times. Read your
+          smart “Daily Agenda” every morning.
+        </Text>
+        <Stack spacing={6} direction={'row'}>
+          <Button
+            rounded={'full'}
+            px={6}
+            colorScheme={'orange'}
+            bg={'orange.400'}
+            _hover={{ bg: 'orange.500' }}>
+            Get started
+          </Button>
+          <Button rounded={'full'} px={6}>
+            Learn more
+          </Button>
+        </Stack>
+        <Flex w={'full'}>
+          <img
+            src={'https://www.dewebkiller.com/dwk_file/2020/09/remote-team.png'}
+            height={{ sm: '24rem', lg: '28rem' }}
+            mt={{ base: 12, sm: 16 }}
           />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              sx={{ color: "primary.main" }}
-              component="div"
-            >
-              Rayhan Al Kavey
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <IconButton sx={{ border: "2px solid black" }}>
-              <AddIcon></AddIcon>
-            </IconButton>
-          </CardActions>
-        </Card>
-      </Box>
-    </ThemeProvider>
+        </Flex>
+      </Stack>
+    </Container>
   );
-};
-
-export default HeroCard;
+}

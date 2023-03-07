@@ -1,1 +1,1 @@
-Build me the NavBar component for the website for Surfa Club which is a community of college students that offers a pay-it-forward system for couchsurfing, with access to events, resources, and networking opportunities.
+Navbar section with subnavigation and Sign in/Sign up buttons.

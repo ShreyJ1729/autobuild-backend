@@ -1,1 +1,1 @@
-Build me the Hero component for the website for CourseSpace which is a course platform that offers various online courses on web development, programming, design, and business.
+Hero section with a title, subtitle and Get Started button, all with a green color scheme.

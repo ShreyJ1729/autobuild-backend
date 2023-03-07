@@ -1,1 +1,1 @@
-Build me the Hero component for the website for Digital Agency which is a agency that helps companies increase brand recognition.
+Hero section with a title, subtitle, graphics, and Get Started button, all with an orange color scheme.

@@ -1,225 +1,100 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import { Link as ScrollLink } from 'react-scroll'
-import { StyledButton } from '@/components/styled-button'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import Head from 'next/head';
+import {
+  Box,
+  Heading,
+  Container,
+  Text,
+  Button,
+  Stack,
+  Icon,
+  useColorModeValue,
+  createIcon,
+} from '@chakra-ui/react';
 
-interface Exp {
-  label: string
-  value: string
-}
-interface ExpItemProps {
-  item: Exp
-}
-
-const exps: Array<Exp> = [
-  {
-    label: 'Students',
-    value: '10K+',
-  },
-  {
-    label: 'Quality Course',
-    value: '20+',
-  },
-  {
-    label: 'Experience Mentors',
-    value: '10+',
-  },
-]
-
-const ExpItem: FC<ExpItemProps> = ({ item }) => {
-  const { value, label } = item
+export default function CallToActionWithAnnotation() {
   return (
-    <Box sx={{ textAlign: 'center', mb: { xs: 1, md: 0 } }}>
-      <Typography
-        sx={{ color: 'secondary.main', mb: { xs: 1, md: 2 }, fontSize: { xs: 34, md: 44 }, fontWeight: 'bold' }}
-      >
-        {value}
-      </Typography>
-      <Typography color="text.secondary" variant="h5">
-        {label}
-      </Typography>
-    </Box>
-  )
-}
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-const HomeHero: FC = () => {
-  return (
-    <Box id="hero" sx={{ backgroundColor: 'background.paper', position: 'relative', pt: 4, pb: { xs: 8, md: 10 } }}>
-      <Container maxWidth="lg">
-        <Grid container spacing={0} sx={{ flexDirection: { xs: 'column', md: 'unset' } }}>
-          <Grid item xs={12} md={7}>
-            <Box
-              sx={{
-                textAlign: { xs: 'center', md: 'left' },
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
-            >
-              <Box sx={{ mb: 3 }}>
-                <Typography
-                  component="h2"
-                  sx={{
-                    position: 'relative',
-                    fontSize: { xs: 40, md: 72 },
-                    letterSpacing: 1.5,
-                    fontWeight: 'bold',
-                    lineHeight: 1.3,
-                  }}
-                >
-                  <Typography
-                    component="mark"
-                    sx={{
-                      position: 'relative',
-                      color: 'primary.main',
-                      fontSize: 'inherit',
-                      fontWeight: 'inherit',
-                      backgroundColor: 'unset',
-                    }}
-                  >
-                    Improve{' '}
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: { xs: 24, md: 34 },
-                        left: 2,
-                        transform: 'rotate(3deg)',
-                        '& img': { width: { xs: 146, md: 210 }, height: 'auto' },
-                      }}
-                    >
-                      {/* eslint-disable-next-line */}
-                      <img src="https://picsum.photos/200/300" alt="Headline curve" />
-                    </Box>
-                  </Typography>
-                  your{' '}
-                  <Typography
-                    component="span"
-                    sx={{
-                      fontSize: 'inherit',
-                      fontWeight: 'inherit',
-                      position: 'relative',
-                      '& svg': {
-                        position: 'absolute',
-                        top: -16,
-                        right: -21,
-                        width: { xs: 22, md: 30 },
-                        height: 'auto',
-                      },
-                    }}
-                  >
-                    Skill
-                    <svg version="1.1" viewBox="0 0 3183 3072">
-                      <g id="Layer_x0020_1">
-                        <path
-                          fill="#127C71"
-                          d="M2600 224c0,0 0,0 0,0 236,198 259,562 52,809 -254,303 -1849,2089 -2221,1776 -301,-190 917,-1964 1363,-2496 207,-247 570,-287 806,-89z"
-                        />
-                        <path
-                          fill="#127C71"
-                          d="M3166 2190c0,0 0,0 0,0 64,210 -58,443 -270,516 -260,90 -1848,585 -1948,252 -104,-230 1262,-860 1718,-1018 212,-73 437,39 500,250z"
-                        />
-                        <path
-                          fill="#127C71"
-                          d="M566 3c0,0 0,0 0,0 -219,-26 -427,134 -462,356 -44,271 -255,1921 90,1962 245,62 628,-1392 704,-1869 36,-221 -114,-424 -332,-449z"
-                        />
-                      </g>
-                    </svg>
-                  </Typography>{' '}
-                  <br />
-                  with Different Way
-                </Typography>
-              </Box>
-              <Box sx={{ mb: 4, width: { xs: '100%', md: '70%' } }}>
-                <Typography sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                  {
-                    "Let's take an online course to improve your skills in a different way, you can set your own study time according to your learning speed. So you san study comfortable and absorb tge material easily."
-                  }
-                </Typography>
-              </Box>
-              <Box sx={{ '& button': { mr: 2 } }}>
-                <ScrollLink to="popular-course" spy={true} smooth={true} offset={0} duration={350}>
-                  <StyledButton color="primary" size="large" variant="contained">
-                    Get Started
-                  </StyledButton>
-                </ScrollLink>
-                <ScrollLink to="video-section" spy={true} smooth={true} offset={0} duration={350}>
-                  <StyledButton color="primary" size="large" variant="outlined" startIcon={<PlayArrowIcon />}>
-                    Watch Video
-                  </StyledButton>
-                </ScrollLink>
-              </Box>
+      <Container maxW={'3xl'}>
+        <Stack
+          as={Box}
+          textAlign={'center'}
+          spacing={{ base: 8, md: 14 }}
+          py={{ base: 20, md: 36 }}>
+          <Heading
+            fontWeight={600}
+            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            lineHeight={'110%'}>
+            Make money from <br />
+            <Text as={'span'} color={'green.400'}>
+              your audience
+            </Text>
+          </Heading>
+          <Text color={'gray.500'}>
+            Monetize your content by charging your most loyal readers and reward
+            them loyalty points. Give back to your loyal readers by granting
+            them access to your pre-releases and sneak-peaks.
+          </Text>
+          <Stack
+            direction={'column'}
+            spacing={3}
+            align={'center'}
+            alignSelf={'center'}
+            position={'relative'}>
+            <Button
+              colorScheme={'green'}
+              bg={'green.400'}
+              rounded={'full'}
+              px={6}
+              _hover={{
+                bg: 'green.500',
+              }}>
+              Get Started
+            </Button>
+            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
+              Learn more
+            </Button>
+            <Box>
+              <Icon
+                as={Arrow}
+                color={useColorModeValue('gray.800', 'gray.300')}
+                w={71}
+                position={'absolute'}
+                right={-71}
+                top={'10px'}
+              />
+              <Text
+                fontSize={'lg'}
+                fontFamily={'Caveat'}
+                position={'absolute'}
+                right={'-125px'}
+                top={'-15px'}
+                transform={'rotate(10deg)'}>
+                Starting at $15/mo
+              </Text>
             </Box>
-          </Grid>
-          <Grid item xs={12} md={5} sx={{ position: 'relative' }}>
-            {/* Sertificate badge */}
-            <Box
-              sx={{
-                position: 'absolute',
-                bottom: 30,
-                left: { xs: 0, md: -150 },
-                boxShadow: 1,
-                borderRadius: 3,
-                px: 2,
-                py: 1.4,
-                zIndex: 1,
-                backgroundColor: 'background.paper',
-                display: 'flex',
-                alignItems: 'flex-start',
-                width: 280,
-              }}
-            >
-              <Box
-                sx={{
-                  boxShadow: 1,
-                  borderRadius: '50%',
-                  width: 44,
-                  height: 44,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  mr: 2,
-                  '& img': { width: '32px !important', height: 'auto' },
-                }}
-              >
-                <Image src="https://picsum.photos/200/300" alt="Certificate icon" width={50} height={50} quality={97} />
-              </Box>
-              <Box>
-                <Typography
-                  component="h6"
-                  sx={{ color: 'secondary.main', fontSize: '1.1rem', fontWeight: 700, mb: 0.5 }}
-                >
-                  Certificate
-                </Typography>
-                <Typography variant="subtitle1" sx={{ color: 'text.secondary', lineHeight: 1.3 }}>
-                  There are certificates for all courses.
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ lineHeight: 0 }}>
-              <Image src="https://picsum.photos/200/300" width={775} height={787} alt="Hero img" />
-            </Box>
-          </Grid>
-        </Grid>
-
-        {/* Experience */}
-        <Box sx={{ boxShadow: 2, py: 4, px: 7, borderRadius: 4 }}>
-          <Grid container spacing={2}>
-            {exps.map((item) => (
-              <Grid key={item.value} item xs={12} md={4}>
-                <ExpItem item={item} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+          </Stack>
+        </Stack>
       </Container>
-    </Box>
-  )
+    </>
+  );
 }
 
-export default HomeHero
+const Arrow = createIcon({
+  displayName: 'Arrow',
+  viewBox: '0 0 72 24',
+  path: (
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M0.600904 7.08166C0.764293 6.8879 1.01492 6.79004 1.26654 6.82177C2.83216 7.01918 5.20326 7.24581 7.54543 7.23964C9.92491 7.23338 12.1351 6.98464 13.4704 6.32142C13.84 6.13785 14.2885 6.28805 14.4722 6.65692C14.6559 7.02578 14.5052 7.47362 14.1356 7.6572C12.4625 8.48822 9.94063 8.72541 7.54852 8.7317C5.67514 8.73663 3.79547 8.5985 2.29921 8.44247C2.80955 9.59638 3.50943 10.6396 4.24665 11.7384C4.39435 11.9585 4.54354 12.1809 4.69301 12.4068C5.79543 14.0733 6.88128 15.8995 7.1179 18.2636C7.15893 18.6735 6.85928 19.0393 6.4486 19.0805C6.03792 19.1217 5.67174 18.8227 5.6307 18.4128C5.43271 16.4346 4.52957 14.868 3.4457 13.2296C3.3058 13.0181 3.16221 12.8046 3.01684 12.5885C2.05899 11.1646 1.02372 9.62564 0.457909 7.78069C0.383671 7.53862 0.437515 7.27541 0.600904 7.08166ZM5.52039 10.2248C5.77662 9.90161 6.24663 9.84687 6.57018 10.1025C16.4834 17.9344 29.9158 22.4064 42.0781 21.4773C54.1988 20.5514 65.0339 14.2748 69.9746 0.584299C70.1145 0.196597 70.5427 -0.0046455 70.931 0.134813C71.3193 0.274276 71.5206 0.70162 71.3807 1.08932C66.2105 15.4159 54.8056 22.0014 42.1913 22.965C29.6185 23.9254 15.8207 19.3142 5.64226 11.2727C5.31871 11.0171 5.26415 10.5479 5.52039 10.2248Z"
+      fill="currentColor"
+    />
+  ),
+});
