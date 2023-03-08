@@ -1,1 +1,0 @@
-Hero section with a title, subtitle and Get Started button, all with a green color scheme.

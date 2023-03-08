@@ -1,1 +1,0 @@
-Hero section with a title, subtitle, graphics, and Get Started button, all with an orange color scheme.

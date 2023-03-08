@@ -7,7 +7,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 
-export default function WithBackgroundImage() {
+export default function Hero() {
   return (
     <Flex
       w={'full'}

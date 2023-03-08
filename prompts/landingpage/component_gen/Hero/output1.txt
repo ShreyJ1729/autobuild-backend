@@ -9,7 +9,7 @@ import {
   IconProps,
 } from '@chakra-ui/react';
 
-export default function CallToActionWithIllustration() {
+export default function Hero() {
   return (
     <Container maxW={'5xl'}>
       <Stack

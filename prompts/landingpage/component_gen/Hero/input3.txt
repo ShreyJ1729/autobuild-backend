@@ -1,0 +1,1 @@
+Full page Hero section with title, buttons, and background image and gradient overlay

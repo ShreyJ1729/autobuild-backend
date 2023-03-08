@@ -1,1 +1,0 @@
-Navbar section with a user dropdown and Dark theme switcher

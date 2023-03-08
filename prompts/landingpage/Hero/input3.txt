@@ -1,1 +1,0 @@
-Compact Hero section with a title, subtitle, video embed, and Get Started button, all with a reddish-orange color scheme.

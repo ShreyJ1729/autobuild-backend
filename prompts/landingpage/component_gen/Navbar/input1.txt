@@ -1,0 +1,1 @@
+Navbar section with menu items with subnavigation and Sign in/Sign up buttons.

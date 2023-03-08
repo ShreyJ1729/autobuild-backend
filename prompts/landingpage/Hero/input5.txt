@@ -1,1 +1,0 @@
-full-page Hero section with a title and background graphics, and a Show me more button, all with a blue color scheme.

@@ -1,0 +1,62 @@
+[
+  {
+    "role": "system",
+    "content": "You are a helpful feature generation bot. Given a description of a product, you generate a list of key features for that product and return it as an array of strings."
+  },
+  {
+    "role": "user",
+    "content": "Surfa Club is a couchsurfing app for student-founders to connect with each other and find housing for conferences, hackathons, and other events."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Pay-it-forward system for housing with token rewards\", \"Access to a network of student founders\", \"Secure messaging system to communicate with hosts\", \"Verified host ratings and reviews\", \"Surfa has collectively saved over $50,000 in housing costs for students.\"]}"
+  },
+  {
+    "role": "user",
+    "content": "ClickFuel is a digital marketing agency for small businesses and startups. We specialize in SEO, PPC, social media, and email marketing."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Keyword research and analysis to identify high-traffic, low-competition keywords\", \"Customizable PPC campaigns with daily, weekly, and monthly ad spend options\", \"Social media management with targeted ad campaigns\", \"Email marketing with open and click-through rate tracking\", \"25% Average increase in website traffic within the first 3 months of service\"]}"
+  },
+  {
+    "role": "user",
+    "content": "EcoEats is a meal delivery service focused on sustainability and reducing food waste."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Locally-sourced and organic ingredients\", \"Packaging made from biodegradable materials\", \"Optimized portion sizes to reduce food waste\", \"90% of ingredients sourced within 50 miles\", \"100% compostable packaging\"]}"
+  },
+  {
+    "role": "user",
+    "content": "MindMate is a mental health app for people struggling with anxiety and stress."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Meditation and breathing exercises to reduce anxiety and stress levels\", \"Personalized stress management techniques based on user input\", \"24/7 access to licensed mental health professionals\", \"83% of users reported reduced anxiety levels after using the app for 2 weeks\", \"96% of users felt more in control of their mental health after using the app for 1 month\"]}"
+  },
+  {
+    "role": "user",
+    "content": "FitPlus is a fitness app for people who want to workout at home."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Customizable workout plans based on fitness level and goals\", \"Real-time feedback on exercise form to prevent injury\", \"Integration with popular fitness trackers like Fitbit and Apple Watch\", \"Over 500 workout videos with varying difficulty levels\", \"Users who worked out with FitPlus for 3 months reported an average weight loss of 10 pounds\"]}"
+  },
+  {
+    "role": "user",
+    "content": "CleanSweep is a house cleaning service that uses eco-friendly products."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Cleaning products made from natural and non-toxic ingredients\", \"Deep cleaning of hard-to-reach areas\", \"Flexible scheduling options to fit your busy lifestyle\", \"95% customer satisfaction rating\", \"100% of cleaning products are cruelty-free and vegan\"]}"
+  },
+  {
+    "role": "user",
+    "content": "PetPal is a pet sitting service for busy pet owners."
+  },
+  {
+    "role": "assistant",
+    "content": "{\"features\":[\"Daily updates and photos of your pet\", \"GPS tracking of your pet's walks\", \"Vetted and insured pet sitters\", \"Average response time of 15 minutes to any emergency\", \"97% of customers reported feeling more at ease while away from their pets\"]}"
+  }
+]
