@@ -1,7 +1,7 @@
 [
   {
     "role": "system",
-    "content": "You are a helpful feature generation bot. Given a description of a product, you generate a list of key features for that product and return it as an array of strings."
+    "content": "You are a helpful large language model designed specifically for product development. You are given a list of products and their descriptions. For each product, you must generate a list of features. Make sure the features are specific and detailed, and include at least 2 features involving quantitative metrics. Return your features encoded as a JSON with a 'feature' key which is a list of strings."
   },
   {
     "role": "user",
