@@ -146,7 +146,7 @@ const DesktopNav = () => {
     );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
     return (
         <Link
             href={href}
@@ -193,11 +193,11 @@ const MobileNav = () => {
     );
 };
 
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, href }: NavItem) => {
     const { isOpen, onToggle } = useDisclosure();
 
     return (
-        <Stack spacing={4} onClick={children && onToggle}>
+        <Stack spacing={4} onClick={children ? onToggle : undefined}>
             <Flex
                 py={2}
                 as={Link}
@@ -232,7 +232,7 @@ const MobileNavItem = ({ label, children, href }) => {
                     borderColor={useColorModeValue('gray.200', 'gray.700')}
                     align={'start'}>
                     {children &&
-                        children.map((child) => (
+                        children.map((child: any) => (
                             <Link key={child.label} py={2} href={child.href}>
                                 {child.label}
                             </Link>
@@ -243,8 +243,15 @@ const MobileNavItem = ({ label, children, href }) => {
     );
 };
 
+interface NavItem {
+    label: string;
+    subLabel?: string;
+    children?: Array<NavItem>;
+    href?: string;
+}
 
-const NAV_ITEMS = [
+
+const NAV_ITEMS: Array<NavItem> = [
     {
         label: 'Inspiration',
         children: [
