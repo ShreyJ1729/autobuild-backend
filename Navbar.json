@@ -1,0 +1,106 @@
+import { ReactNode } from 'react';
+import {
+Box,
+Flex,
+HStack,
+Link,
+IconButton,
+Button,
+useDisclosure,
+useColorMode,
+useColorModeValue,
+Text,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+
+const NavLink = ({ children }: { children: ReactNode }) => (
+<Link
+px={2}
+py={1}
+rounded={'md'}
+_hover={{
+textDecoration: 'none',
+}}
+color={useColorModeValue('gray.600', 'gray.400')}
+href={'#'}>
+{children}
+</Link>
+);
+
+export default function Navbar() {
+const { isOpen, onOpen, onClose } = useDisclosure();
+const { colorMode, toggleColorMode } = useColorMode();
+
+return (
+<Box
+bgGradient="linear(130deg, #2E2E31 0%, #009999 70%)"
+px={4}>
+<Flex
+h={16}
+alignItems={'center'}
+justifyContent={'space-between'}
+w="80%"
+maxW="1200px"
+mx="auto">
+<Flex alignSelf="center">
+<Box
+h="6"
+w="6"
+bg="white"
+mr="3"
+rounded="md"
+_boxShadow="md"
+/>
+<Text
+color="white"
+fontSize="md"
+fontWeight="semibold"
+textTransform="uppercase"
+>
+VERCEL
+</Text>
+</Flex>
+<Flex alignItems={'center'}>
+<HStack spacing={8} alignItems={'center'}>
+<HStack
+as={'nav'}
+spacing={4}
+display={{ base: 'none', md: 'flex' }}>
+<NavLink>Product</NavLink>
+<NavLink>Pricing</NavLink>
+</HStack>
+</HStack>
+
+<Button
+onClick={toggleColorMode}
+mr={4}
+bg="transparent"
+border="1px solid white"
+_hover={{ bg: 'teal.800' }}
+>
+{colorMode === 'light' ? '🌙' : '☀️'}
+</Button>
+
+<IconButton
+size={'md'}
+aria-label={'Open Menu'}
+display={{ md: 'none' }}
+onClick={isOpen ? onClose : onOpen}
+icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+bg="transparent"
+_hover={{ bg: 'teal.800' }}
+/>
+</Flex>
+</Flex>
+
+{isOpen ? (
+<Box pb={4} display={{ md: 'none' }}>
+<Flex flexDir="column">
+<NavLink>Product</NavLink>
+<NavLink>Pricing</NavLink>
+</Flex>
+</Box>
+) : null}
+</Box>
+);
+}

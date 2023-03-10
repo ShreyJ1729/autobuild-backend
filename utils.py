@@ -9,87 +9,44 @@ def load_openai_key(path):
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
+def get_component_types(path):
+    return [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
+
+
 def build_messages_from_file(path, prompt):
     messages = json.load(open(path, "r"))
     messages.append({"role": "user", "content": prompt})
     return messages
 
 
-def build_message_list(
-    component,
-    prompt,
-    prompt_instructions,
-):
-    # build and return messageList
-    messageList = [
-        {
-            "role": "system",
-            "content": prompt_instructions,
-        },
-    ]
+def build_messages_from_dir(prompt_path, data_path, prompt):
+    messages = json.load(open(prompt_path, "r"))
 
-    iterlen = 2
-
-    for i in range(1, iterlen):
-        messageList.append(
-            {
-                "role": "user",
-                "content": open(
-                    f"../prompts/landingpage/{component}/input{i}.txt",
-                    "r",
-                ).read(),
-            }
+    for i in range(1, len(os.listdir(data_path)) // 2 + 1):
+        # read input/output files, removing all indents to significantly reduce token count
+        inputContent = (
+            open(os.path.join(data_path, f"input{i}.txt"), "r")
+            .read()
+            .replace(" " * 4, "")
         )
-        messageList.append(
-            {
-                "role": "assistant",
-                "content": open(
-                    f"../prompts/landingpage/{component}/output{i}.txt",
-                    "r",
-                ).read(),
-            }
+        outputContent = (
+            open(os.path.join(data_path, f"output{i}.txt"), "r")
+            .read()
+            .replace(" " * 4, "")
         )
-    messageList.append({"role": "user", "content": prompt})
-    return messageList
 
+        messages.extend(
+            [
+                {
+                    "role": "user",
+                    "content": inputContent,
+                },
+                {
+                    "role": "assistant",
+                    "content": outputContent,
+                },
+            ]
+        )
 
-# def build_message_list(description):
-#     prompt = open(prompt_path, "r").read()
-
-#     # replace variables in prompt
-#     for key in variables:
-#         prompt = prompt.replace(f"{{{{{key}}}}}", variables[key])
-
-#     # build and return messageList
-#     messageList = [
-#         {
-#             "role": "system",
-#             "content": prompt_instructions,
-#         },
-#     ]
-
-#     iterlen = (
-#         len(os.listdir(f"./prompts/landingpage/{variables['COMPONENT']}")) // 2 + 1
-#     )
-
-#     for i in range(1, iterlen):
-#         messageList.append(
-#             {
-#                 "role": "user",
-#                 "content": open(
-#                     f"./prompts/landingpage/{variables['COMPONENT']}/input{i}.txt",
-#                     "r",
-#                 ).read(),
-#             }
-#         )
-#         messageList.append(
-#             {
-#                 "role": "assistant",
-#                 "content": open(
-#                     f"./prompts/landingpage/{variables['COMPONENT']}/output{i}.txt",
-#                     "r",
-#                 ).read(),
-#             }
-#         )
-#     messageList.append({"role": "user", "content": prompt})
-#     return messageList
+    messages.append({"role": "user", "content": prompt})
+    return messages

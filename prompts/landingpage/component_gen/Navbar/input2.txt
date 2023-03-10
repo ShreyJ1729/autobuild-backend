@@ -1,1 +1,1 @@
-Navbar section with simple menu items, dark mode switcher, and a user avatar with a dropdown.
+Navbar section with menu items, and a dark mode switcher
